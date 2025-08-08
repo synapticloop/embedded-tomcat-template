@@ -11,6 +11,11 @@ An embedded tomcat example which gets around the annoying intellij IDEA
    - `@WebFilter`
    - `@WebListener`
 
+If you don't want to use Annotations, then there is an example 
+ContextListener registered through the included web.xml (in the 
+`src/main/webapp/WEB-INF/` directory) which will register the listeners 
+before any annotations in the order that they are configured.
+
 What's more, it is faster to start-up and redeploy than running it through 
 the IDE.
 

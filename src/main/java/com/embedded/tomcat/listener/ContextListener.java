@@ -7,10 +7,10 @@ import jakarta.servlet.annotation.WebListener;
 @WebListener
 public class ContextListener implements ServletContextListener {
 	@Override public void contextInitialized(ServletContextEvent sce) {
-		System.out.println("contextInitialized");
+		System.out.println("ContextListener contextInitialized mapped through an annotation");
 	}
 
 	@Override public void contextDestroyed(ServletContextEvent sce) {
-		System.out.println("contextDestroyed");
+		System.out.println("ContextListener contextDestroyed mapped through an annotation");
 	}
 }
