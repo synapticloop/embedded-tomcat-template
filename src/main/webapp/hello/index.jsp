@@ -1,0 +1,1 @@
+This page will not be seen as there is a servlet registered under the '/hello/*' URL path

@@ -1,0 +1,40 @@
+plugins {
+	id 'java'
+	id 'application'
+}
+
+group = 'com.tomcat.embedded'
+version = '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.9'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:11.0.9'
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+
+	testImplementation platform('org.junit:junit-bom:5.10.0')
+	testImplementation 'org.junit.jupiter:junit-jupiter'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+application {
+	mainClass = 'com.embedded.tomcat.Main'
+}
+
+distributions {
+	main {
+		contents {
+			from('src/main/webapp') {
+				into 'webapp'
+			}
+		}
+	}
+}
