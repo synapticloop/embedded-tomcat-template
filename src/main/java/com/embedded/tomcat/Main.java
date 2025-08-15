@@ -6,6 +6,7 @@ import org.apache.catalina.startup.Tomcat;
 import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.JarResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
+import org.apache.tomcat.util.descriptor.web.ErrorPage;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class Main {
 		context.addWelcomeFile("index.jsp");
 
 		registerScannerForAnnotations(context);
+		configureErrorPages(context);
 
 		tomcat.start();
 		// Keep the server running until explicitly shut down
@@ -86,5 +88,18 @@ public class Main {
 			throw new RuntimeException("Failed to configure annotation scanning/resource loading due to URI syntax error.", e);
 		}
 		context.setResources(resources);
+	}
+
+	/**
+	 * <p>Here you can register the error codes and what to do with them</p>
+	 *
+	 * @param context The context to register the servlets against
+	 */
+	private static void configureErrorPages(Context context) {
+		ErrorPage errorPage404 = new ErrorPage();
+		errorPage404.setErrorCode(404);
+		errorPage404.setLocation("/error/404");
+
+		context.addErrorPage(errorPage404);
 	}
 }
